@@ -116,7 +116,7 @@ def spin(Balance):
     print_slot_machine(slots)
     winnings,winnings_line = check_winnings(slots,lines,tokens,symbol_value)
     print(f"you won {winnings}🃏 tokens.")
-    print(f"you won those tokens on ")
+    print(f"you won those tokens on {winnings_line}")
     return winnings-tokens
 
 
