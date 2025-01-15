@@ -31,13 +31,14 @@ def password_generator(min_length,numbers=True,special_chars=True):
         if numbers:
             meets_criteria1 = has_number
         if special_chars:
-            meets_criteria = meets_criteria1 and has_special
+            meets_criteria = meets_criteria and has_special
         
     return pwd
 
 min_len = int(input("Enter The Minimum length Of The Password: "))
-has_num = input("Do You want numbers in your password(y/n): ").lower() == "y"
-has_special = input("Do You want Special Characters in your password(y/n): ").lower()== "y"
+has_number = input("Do You want numbers in your password(y/n): ").lower() == "y"
+has_special = input("Do You want Special Characters in your password(y/n): ").lower() == "y"
 
-pwd=password_generator(min_len,has_num,has_special)
+pwd=password_generator(min_len,has_number,has_special)
 print(pwd) 
+
