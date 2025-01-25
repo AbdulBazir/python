@@ -104,33 +104,61 @@ def No_of_tokens_Placed():
 
 def spin(Balance):
     lines = Num_of_Lines()
+    tokens = No_of_tokens_Placed()
+    
+    if Balance == 0:
+        print("Your Balance Is 0...So See You Later!!")
+        return 0  
+    
     while True:
-        tokens= No_of_tokens_Placed()
-        if tokens>Balance:
-            print(f"You Dont have enough tokens\n Your Current Balance is {Balance}🃏")
+        if tokens > Balance:
+            print(f"You don't have enough tokens. Your current balance is {Balance}🃏.")
+        elif Balance == 0:
+            break
         else:
             break
-    print(f"you are placing {tokens}🃏 tokens on {lines} lines")
-
-    slots=slot_machine_spin(ROWS,COLS,symbols_count)
+    
+    print(f"You are placing {tokens}🃏 tokens on {lines} lines.")
+    
+    slots = slot_machine_spin(ROWS, COLS, symbols_count)
     print_slot_machine(slots)
-    winnings,winnings_line = check_winnings(slots,lines,tokens,symbol_value)
-    print(f"you won {winnings}🃏 tokens.")
-    print(f"you won those tokens on {winnings_line}")
-    return winnings-tokens
+    
+    winnings, winnings_line = check_winnings(slots, lines, tokens, symbol_value)
+    if winnings>0:    
+        print(f"You won {winnings}🃏 tokens.")
+        print(f"You won those tokens on lines {winnings_line}.")
+    else:
+        print("you won nothing this time!!")
+    
+    return winnings - tokens  
+
 
 
 def main():
-    Balance = deposit()
     while True:
-        print(f"Current 🃏Token Balance is: {Balance}")
         answer= input("Press Enter To Play Or Type 'q' to quit ")
         if answer=="q":
+            print("See You Later👋👋")
+            break    
+        else:
+            Balance = deposit()
+            while True:
+                print(f"Current 🃏Token Balance is: {Balance}")
+                if Balance==0:
+                    break 
+                else:
+                    answer= input("Are You Sure Want To Play !! If Not Press 'q' to Quit With Current Balance ")
+                    if answer=="q":
+                        print("See You Later👋👋")
+                        break
+                    else:
+                        Balance+=spin(Balance)
+        if Balance==0:
+            print("Ouch you Lost Everything!! See You Later")
             break
         else:
-            Balance+=spin(Balance)
-    
-    print(f"You left With {Balance}🃏 Tokens")
-
+            print(f"You left With {Balance}🃏 Tokens")
+            break
+        
 
 main()
