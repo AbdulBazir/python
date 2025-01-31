@@ -20,7 +20,7 @@ symbol_value={
     "♣️":2
 }
 
-def check_winnings(columns,lines,tokens,values):
+def check_winnings(columns,lines,tokens,values): 
     winnings=0
     winnings_lines=[]
     for line in range(lines):
@@ -104,20 +104,17 @@ def No_of_tokens_Placed():
 
 def spin(Balance):
     lines = Num_of_Lines()
-    tokens = No_of_tokens_Placed()
-    
     if Balance == 0:
         print("Your Balance Is 0...So See You Later!!")
         return 0  
     
     while True:
+        tokens = No_of_tokens_Placed()
         if tokens > Balance:
             print(f"You don't have enough tokens. Your current balance is {Balance}🃏.")
-        elif Balance == 0:
-            break
         else:
             break
-    
+        
     print(f"You are placing {tokens}🃏 tokens on {lines} lines.")
     
     slots = slot_machine_spin(ROWS, COLS, symbols_count)
